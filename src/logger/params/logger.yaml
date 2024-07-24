@@ -1,0 +1,4 @@
+logger_node:
+  ros__parameters:
+    data_log_hz: 1.0
+    csv_path: "data.csv"

@@ -1,0 +1,6 @@
+udp_node:
+  ros__parameters:
+    receive_port: 12345
+    send_port: 12346
+    data_publish_hz: 5.0
+    average_duration_s: 2
