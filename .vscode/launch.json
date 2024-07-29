@@ -1,0 +1,56 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch udp_node with gdbserver",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "/bin/bash",
+      "args": [
+        "-c",
+        "source /opt/ros/foxy/setup.bash && ros2 run --prefix 'gdbserver localhost:3000' udp udp_node --ros-args --params-file src/udp/params/udp.yaml"
+      ],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "Build"
+    },
+    {
+      "name": "Attach to gdbserver",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/install/lib/udp/udp_node",
+      "stopAtEntry": true,
+      "miDebuggerServerAddress": "localhost:3000",
+      "miDebuggerPath": "/usr/bin/gdb",
+      "cwd": "${workspaceFolder}",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "preLaunchTask": "Wait for gdbserver"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Launch and Attach",
+      "configurations": [
+        "Launch udp_node with gdbserver",
+        "Attach to gdbserver"
+      ]
+    }
+  ]
+}

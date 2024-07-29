@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "./build.sh -a -DCMAKE_BUILD_TYPE=Debug",
+        },
+        {
+            "label": "Wait for gdbserver",
+            "type": "shell",
+            "command": "while !(echo > /dev/tcp/localhost/3000) 2>/dev/null; do sleep 1; done",
+        }
+    ]
+}
