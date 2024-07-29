@@ -8,7 +8,7 @@ namespace logger {
       Node(nodeName, options) {
     subscription_ = create_subscription<messages::msg::Data>("udp/data", QOS,
         [&](messages::msg::Data::SharedPtr msg) {
-          std::cout << "Received data\n";
+          (void)msg;
           // TODO: store received data to a FIFO buffer
         });
 

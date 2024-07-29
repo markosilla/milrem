@@ -4,3 +4,4 @@ log/
 cmake-build-debug/
 *.tar.gz
 .vs/
+CMakeLists.txt.old

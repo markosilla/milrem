@@ -15,7 +15,7 @@ usage () {
 
 build () {
   mv CMakeLists.txt CMakeLists.txt.old
-  colcon build --merge-install ${CMAKE_ARGS}
+  colcon build --merge-install ${CMAKE_ARGS} || { echo "Build failed"; mv CMakeLists.txt.old CMakeLists.txt; exit 1; }
   mv CMakeLists.txt.old CMakeLists.txt
 }
 

@@ -8,7 +8,6 @@ import random
 from enum import IntEnum
 from ctypes import *
 
-
 NR_SENSORS = 10
 
 
@@ -52,7 +51,7 @@ ValueTypeToCtype = {
 limited_selection_of_values_to_send = [
     (ValueType.FIELD_INT8, 2 ** 7  - 1),
     (ValueType.FIELD_INT32, 2 ** 31 - 1),
-    (ValueType.FIELD_UINT64, 2 ** 64 - 1)
+   # (ValueType.FIELD_UINT64, 2 ** 64 - 1)
 ]
 
 
@@ -86,6 +85,8 @@ class Server(asyncio.DatagramProtocol):
         self.logger = logger
         self.transport = None
         self.last_ping = time.time()
+        self.packet_count = 0
+
 
         if not self.loop:
             self.loop = asyncio.get_event_loop()
@@ -138,6 +139,11 @@ class Server(asyncio.DatagramProtocol):
         )
         logger.debug("Sending packet len %s, data %s", sizeof(packet), packet)
         self.transport.sendto(bytes(packet), ('127.0.0.1', 12345))
+
+        self.packet_count += 1
+        print(f"Total packets sent: {self.packet_count}")
+        
+
         self.loop.call_later(interval, self.send_packet, sensor_id, value_type, max_value)
 
 

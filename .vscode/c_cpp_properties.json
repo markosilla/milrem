@@ -3,10 +3,10 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/install/include/**",
                 "/opt/ros/foxy/include/**",
                 "${workspaceFolder}/src/udp/include/udp/**",
                 "${workspaceFolder}/src/udp/include",
+                "${workspaceFolder}/src/common/include/**",
                 "${workspaceFolder}/**"
             ],
             "defines": [],

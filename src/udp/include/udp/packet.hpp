@@ -5,6 +5,8 @@
 #include <cstring>
 #include <iostream>
 
+/* Storage for testing, TODO: "Data must be stored in the type defined in UDP packet." */
+
 namespace udp
 {
 
@@ -143,6 +145,40 @@ namespace udp
 
             return *this;
         }
+
+    double getValueAsDouble()
+    {
+        switch (dataType)
+        {
+        case 0:
+            return static_cast<double>(value.value_bool);
+        case 1:
+            return static_cast<double>(value.value_int8);
+        case 2:
+            return static_cast<double>(value.value_int16);
+        case 3:
+            return static_cast<double>(value.value_int32);
+        case 4:
+            return static_cast<double>(value.value_int64);
+        case 5:
+            return static_cast<double>(value.value_uint8);
+        case 6:
+            return static_cast<double>(value.value_uint16);
+        case 7:
+            return static_cast<double>(value.value_uint32);
+        case 8:
+            return static_cast<double>(value.value_uint64);
+        case 9:
+            return static_cast<double>(value.value_float);
+        case 10:
+            return value.value_double;
+        case 11:
+            return static_cast<double>(value.value_char);
+        default:
+            std::cerr << "Unknown data type" << std::endl;
+            return 0.0;
+        }
+    }
     };
 
 } // namespace udp

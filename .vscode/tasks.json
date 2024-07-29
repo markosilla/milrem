@@ -10,6 +10,7 @@
             "label": "Wait for gdbserver",
             "type": "shell",
             "command": "while !(echo > /dev/tcp/localhost/3000) 2>/dev/null; do sleep 1; done",
+            "dependsOn": "Build",
         }
     ]
 }
