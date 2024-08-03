@@ -1,9 +1,9 @@
 #include <chrono>
-
 #include <time.h>
 #include <unistd.h>
 
 #include "udp/udp.hpp"
+#include "udp/udp_server.hpp"
 
 namespace udp {
   Udp::Udp(const std::string &nodeName,
@@ -28,6 +28,10 @@ namespace udp {
     //  * Start sending pinging packets and calculate connection latency. Print
     //    latency value (in μs) with a 5s interval.
     //  * UDP communication must not block the main thread.
+
+    std::shared_ptr<udp::UdpServer> server;
+    server = std::make_shared<udp::UdpServer>(12346, 12345);
+    server->init();
   }
 
   messages::msg::Data Udp::getAveragedData() {

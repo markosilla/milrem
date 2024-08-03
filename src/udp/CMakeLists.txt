@@ -23,7 +23,7 @@ include_directories(
         ${std_srvs_INCLUDE_DIRS}
         ${rclcpp_INCLUDE_DIRS})
 
-add_library(udp src/udp.cpp)
+add_library(udp src/udp.cpp src/udp_server.cpp)
 
 add_executable(udp_node src/udp_node.cpp)
 
